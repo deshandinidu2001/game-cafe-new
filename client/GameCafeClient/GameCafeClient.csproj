@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Target Windows exclusively for WinForms and Win32 P/Invoke -->
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <AssemblyName>GameCafeClient</AssemblyName>
+    <RootNamespace>GameCafeClient</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <!-- High-DPI: .NET 10 WinForms way (replaces app.manifest dpiAware settings) -->
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+
+    <!-- Publish settings (used with: dotnet publish -r win-x64) -->
+    <!--
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PublishReadyToRun>true</PublishReadyToRun>
+    -->
+
+    <!-- Version info shown in Task Manager -->
+    <Version>1.0.0</Version>
+    <FileVersion>1.0.0.0</FileVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <Company>Game Cafe</Company>
+    <Product>Game Cafe Client</Product>
+    <Description>Gaming Cafe Session Manager Client</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- System.Text.Json is included in .NET 8, no extra package needed -->
+  </ItemGroup>
+
+</Project>

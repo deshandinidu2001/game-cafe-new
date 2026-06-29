@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Game Cafe Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Navbar ── -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span class="brand-icon">🎮</span>
+      <div class="brand-text">
+        <span class="brand-title">Game Cafe</span>
+        <span class="brand-sub">Admin Dashboard</span>
+      </div>
+    </div>
+
+    <div class="nav-center">
+      <div class="server-status" id="serverStatus">
+        <span class="status-pulse"></span>
+        <span class="status-text">Connecting…</span>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <button class="btn btn-outline" id="btnLaunchClient" onclick="app.launchClient()" title="Launch client app on this PC">
+        💻 Launch Client
+      </button>
+      <button class="btn btn-danger" id="btnLockAll" onclick="app.lockAll()">
+        🔒 Lock All
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── Stats Bar ── -->
+  <div class="stats-bar">
+    <div class="stat-card">
+      <div class="stat-icon">🖥️</div>
+      <div class="stat-body">
+        <div class="stat-value" id="statTotal">0</div>
+        <div class="stat-label">Connected</div>
+      </div>
+    </div>
+    <div class="stat-card success">
+      <div class="stat-icon">✅</div>
+      <div class="stat-body">
+        <div class="stat-value" id="statOnline">0</div>
+        <div class="stat-label">Online</div>
+      </div>
+    </div>
+    <div class="stat-card warning">
+      <div class="stat-icon">⏱️</div>
+      <div class="stat-body">
+        <div class="stat-value" id="statTimers">0</div>
+        <div class="stat-label">Active Timers</div>
+      </div>
+    </div>
+    <div class="stat-card danger">
+      <div class="stat-icon">🔒</div>
+      <div class="stat-body">
+        <div class="stat-value" id="statLocked">0</div>
+        <div class="stat-label">Locked</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Main Content ── -->
+  <main class="main">
+    <div class="section-header">
+      <h2 class="section-title">Client Machines</h2>
+      <div class="section-meta">
+        Auto-refresh every 2s &nbsp;·&nbsp; Last updated: <span id="lastUpdated">—</span>
+      </div>
+    </div>
+
+    <div class="clients-grid" id="clientsGrid">
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">🖥️</div>
+        <div class="empty-title">No Clients Connected</div>
+        <div class="empty-sub">Gaming PCs will appear here once they connect to this server</div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ── Session Modal ── -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Start Session</h3>
+          <div class="modal-ip" id="modalIp">—</div>
+        </div>
+        <button class="modal-close" onclick="app.closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <label class="form-label">Quick Presets</label>
+        <div class="presets">
+          <button class="preset-btn" data-min="30"  onclick="app.setPreset(30,  this)">30 min</button>
+          <button class="preset-btn" data-min="60"  onclick="app.setPreset(60,  this)">1 hour</button>
+          <button class="preset-btn" data-min="90"  onclick="app.setPreset(90,  this)">1.5 hr</button>
+          <button class="preset-btn" data-min="120" onclick="app.setPreset(120, this)">2 hours</button>
+        </div>
+        <label class="form-label" style="margin-top:20px">Custom Duration</label>
+        <div class="input-row">
+          <input type="number" id="sessionMinutes" class="form-input"
+                 placeholder="e.g. 45" min="1" max="720"
+                 onkeydown="if(event.key==='Enter') app.confirmStart()" />
+          <span class="input-unit">minutes</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" onclick="app.closeModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="app.confirmStart()">▶ Start Session</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Toast Container ── -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
