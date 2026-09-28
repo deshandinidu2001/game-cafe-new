@@ -2,36 +2,6 @@
 
 A production-grade client-server system for managing gaming cafe sessions. The server controls session timers and sends lock/unlock commands; the client enforces restrictions on each PC.
 
----
-
-## Repository Structure
-
-```
-game-cafe/
-├── server/                  # Node.js + TypeScript TCP server
-│   ├── src/
-│   │   ├── server.ts        # Entry point
-│   │   ├── ClientManager.ts # In-memory socket registry
-│   │   ├── SessionTimer.ts  # Per-client countdown logic
-│   │   ├── CommandHandler.ts# Lock/Unlock payload dispatch
-│   │   └── cli.ts           # Interactive CLI / REST API
-│   ├── package.json
-│   ├── tsconfig.json
-│   └── .env.example
-│
-└── client/                  # C# .NET 8 WinForms client
-    ├── GameCafeClient/
-    │   ├── Program.cs        # Entry point + mutex guard
-    │   ├── TcpClientService.cs  # Reconnecting TCP client
-    │   ├── CommandProcessor.cs  # JSON command dispatcher
-    │   ├── OverlayForm.cs    # Fullscreen borderless lock overlay
-    │   ├── WindowsApi.cs     # P/Invoke Win32 declarations
-    │   └── GameCafeClient.csproj
-    └── GameCafeClient.sln
-```
-
----
-
 ## Quick Start
 
 ### Server
