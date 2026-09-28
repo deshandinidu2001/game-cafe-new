@@ -1,0 +1,20 @@
+# .NET build output
+**/bin/
+**/obj/
+
+# Node.js dependencies and generated output
+**/node_modules/
+**/dist/
+**/build/
+
+# Local environment and editor files
+.env
+.env.*
+!.env.example
+.vs/
+.vscode/
+*.user
+*.suo
+
+# Logs
+*.log
